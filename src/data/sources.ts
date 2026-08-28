@@ -19,7 +19,6 @@ export type SourceLevel =
 export type SourceId =
   | 'datos-gob-ar'
   | 'bcra'
-  | 'argentinadatos'
   | 'world-bank'
   | 'indec'
   | 'finanzas'
@@ -72,19 +71,6 @@ export const SOURCES: Record<SourceId, Source> = {
     url: 'https://www.bcra.gob.ar/BCRAyVos/catalogo-de-APIs-banco-central.asp',
     verifiedOn: '2026-08-27',
     notes: 'v4.0. La v3.0 devuelve HTTP 410.',
-  },
-  argentinadatos: {
-    id: 'argentinadatos',
-    organismo: 'ArgentinaDatos (redistribuye el EMBI+ de J.P. Morgan)',
-    host: 'api.argentinadatos.com',
-    level: 'agregador',
-    state: 'aprobada',
-    approvedOn: '2026-08-27',
-    cors: true,
-    access: 'api',
-    url: 'https://argentinadatos.com/',
-    verifiedOn: '2026-08-27',
-    notes: 'Rotular siempre emisor y vía (RF-9.4). Sin SLA.',
   },
   'world-bank': {
     id: 'world-bank',

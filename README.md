@@ -47,9 +47,12 @@ diario verifica contra ese dump que ninguna serie del catálogo haya sido
 discontinuada: la API sigue devolviendo el dato viejo sin error, así que sin esta
 verificación uno se entera cuando el número ya quedó congelado.
 
-Hoy se usan: Series de Tiempo AR (Ministerio de Economía), BCRA, ArgentinaDatos
-—que redistribuye el EMBI+ de J.P. Morgan—, World Bank y CEDLAS/SEDLAC (UNLP y
-Banco Mundial).
+Hoy se usan: Series de Tiempo AR (Ministerio de Economía), BCRA, World Bank y
+CEDLAS/SEDLAC (UNLP y Banco Mundial). Todas son organismos oficiales, un
+organismo internacional o un centro académico.
+
+No se usan agregadores: un tercero que redistribuye dato de otro no permite
+verificar contra el emisor qué se publicó ni cuándo cambió.
 
 ## Principios que el código respeta
 

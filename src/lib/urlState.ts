@@ -1,5 +1,6 @@
 import type { DateRange, IndicatorId } from '../types'
 import type { Adjustment } from './adjust'
+import { INDICATOR_BY_ID } from '../data/indicators'
 
 /**
  * RF-7.1 — el estado completo de la vista vive en la URL, de modo que pegarla
@@ -44,7 +45,12 @@ function encodePanel(panel: PanelState): string {
 /** Un panel sin indicadores es válido: el usuario puede vaciarlo. */
 function decodePanel(raw: string): PanelState {
   const [ids = '', flags = '', adjust = ''] = raw.split('~')
-  const indicators = ids.split(',').filter(Boolean) as IndicatorId[]
+  // Se descarta lo que no esté en el registro. La URL es entrada de afuera y
+  // sobrevive a los cambios de catálogo: un enlace compartido cuando una serie
+  // todavía existía debe abrir sin ella, no dejar la pantalla en blanco.
+  const indicators = ids
+    .split(',')
+    .filter((id): id is IndicatorId => id in INDICATOR_BY_ID)
   return {
     indicators,
     normalized: flags.includes('n'),

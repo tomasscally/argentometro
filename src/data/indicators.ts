@@ -245,30 +245,6 @@ export const INDICATORS: Indicator[] = [
     ],
   },
   {
-    id: 'country_risk',
-    category: 'cambiario',
-    label: 'Riesgo país (EMBI+)',
-    description:
-      'Índice EMBI+ de J.P. Morgan para Argentina, redistribuido por ArgentinaDatos',
-    unit: 'puntos básicos',
-    kind: 'tasa-estado',
-    frequency: 'diaria',
-    color: '#d98b3f',
-    decimals: 0,
-    // RF-9.4 — se rotula emisor y vía: no es acceso directo al emisor.
-    originLabel: 'EMBI+ J.P. Morgan, vía ArgentinaDatos',
-    series: [
-      {
-        sourceId: 'argentinadatos',
-        seriesId: '/v1/finanzas/indices/riesgo-pais',
-        validFrom: '1999-01-22',
-        validTo: null,
-        scale: 1,
-      },
-    ],
-    breaks: [],
-  },
-  {
     id: 'cedlas_gini',
     category: 'ingresos',
     label: 'Desigualdad (Gini) · CEDLAS',

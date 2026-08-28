@@ -134,34 +134,6 @@ const bcraAdapter: Adapter = async (ref) => {
   return { url: firstUrl, points }
 }
 
-// ── api.argentinadatos.com ───────────────────────────────────────────────────
-
-const argentinaDatosAdapter: Adapter = async (ref) => {
-  // `#casa` selecciona un tipo de dólar dentro de la respuesta de cotizaciones.
-  const [path, casa] = ref.seriesId.split('#')
-  const url = `https://api.argentinadatos.com${path}`
-  const body = (await getJson(url)) as {
-    fecha: string
-    valor?: number
-    venta?: number
-    casa?: string
-  }[]
-  if (!Array.isArray(body)) {
-    throw new Error(`ArgentinaDatos no devolvió una lista (${ref.seriesId})`)
-  }
-
-  const rows = casa ? body.filter((d) => d.casa === casa) : body
-  if (casa && rows.length === 0) {
-    throw new Error(`ArgentinaDatos no tiene cotizaciones para "${casa}"`)
-  }
-
-  const points = rows
-    .map((d) => ({ date: d.fecha.slice(0, 10), value: casa ? d.venta : d.valor }))
-    .filter((p): p is { date: string; value: number } => typeof p.value === 'number')
-
-  return { url, points }
-}
-
 // ── api.worldbank.org ────────────────────────────────────────────────────────
 
 const worldBankAdapter: Adapter = async (ref) => {
@@ -280,7 +252,6 @@ const cedlasAdapter: Adapter = async (ref) => {
 const ADAPTERS: Record<string, Adapter> = {
   'datos-gob-ar': datosGobAdapter,
   bcra: bcraAdapter,
-  argentinadatos: argentinaDatosAdapter,
   'world-bank': worldBankAdapter,
   cedlas: cedlasAdapter,
 }

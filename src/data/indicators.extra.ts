@@ -31,17 +31,6 @@ const cedlas = (file: string, sheet: string, validFrom: string): SeriesRef[] => 
   },
 ]
 
-/** `casa` es el tipo de dólar dentro de la respuesta de ArgentinaDatos. */
-const dolar = (casa: string, validFrom: string): SeriesRef[] => [
-  {
-    sourceId: 'argentinadatos',
-    seriesId: `/v1/cotizaciones/dolares#${casa}`,
-    validFrom,
-    validTo: null,
-    scale: 1,
-  },
-]
-
 const EMPLOYMENT = '2025_Act1_employment_LAC.xlsx'
 const WAGES = '2025_Act1_wages_hours_LAC.xlsx'
 
@@ -79,43 +68,6 @@ const PRECIOS: Indicator[] = [
     breaks: [],
   },
   {
-    id: 'inflation_1943',
-    label: 'Inflación · serie larga',
-    description:
-      'Variación mensual de precios desde 1943, serie histórica empalmada y ' +
-      'redistribuida por ArgentinaDatos',
-    unit: '% mensual',
-    kind: 'tasa-flujo',
-    category: 'precios',
-    frequency: 'mensual',
-    color: '#a85d7a',
-    decimals: 1,
-    group: 'alternativa',
-    // El empalme histórico lo hace el agregador, no un organismo oficial.
-    originLabel: 'Serie histórica empalmada, vía ArgentinaDatos',
-    series: [
-      {
-        sourceId: 'argentinadatos',
-        seriesId: '/v1/finanzas/indices/inflacion',
-        validFrom: '1943-01-01',
-        validTo: null,
-        scale: 1,
-      },
-    ],
-    breaks: [
-      {
-        date: '1943-03-01',
-        kind: 'organismo',
-        short: 'Serie empalmada por un tercero',
-        long:
-          'La serie cubre más de ochenta años empalmando índices de distinta base, ' +
-          'cobertura y organismo. El empalme lo hace ArgentinaDatos, no un organismo ' +
-          'oficial: sirve para ver el orden de magnitud histórico, no para reemplazar ' +
-          'la serie oficial del INDEC.',
-      },
-    ],
-  },
-  {
     id: 'basket_total',
     label: 'Canasta básica total',
     description:
@@ -135,93 +87,6 @@ const PRECIOS: Indicator[] = [
 // ── Cambiario y financiero ───────────────────────────────────────────────────
 
 const CAMBIARIO: Indicator[] = [
-  {
-    id: 'usd_blue',
-    label: 'Dólar blue',
-    description: 'Cotización de venta del dólar en el mercado informal',
-    unit: 'ARS / USD',
-    kind: 'nivel',
-    category: 'cambiario',
-    frequency: 'diaria',
-    color: '#4fa3d1',
-    decimals: 0,
-    originLabel: 'Relevamiento de mercado, vía ArgentinaDatos',
-    series: dolar('blue', '2011-01-03'),
-    breaks: [],
-  },
-  {
-    id: 'usd_official',
-    label: 'Dólar oficial',
-    description: 'Cotización de venta del dólar oficial minorista',
-    unit: 'ARS / USD',
-    kind: 'nivel',
-    category: 'cambiario',
-    frequency: 'diaria',
-    color: '#3f7fa8',
-    decimals: 0,
-    originLabel: 'Relevamiento de mercado, vía ArgentinaDatos',
-    series: dolar('oficial', '2011-01-03'),
-    breaks: [],
-  },
-  {
-    id: 'usd_gap',
-    label: 'Brecha cambiaria',
-    description:
-      'Cuánto más caro está el dólar informal que el oficial, en porcentaje. ' +
-      'Calculado por la aplicación a partir de ambas cotizaciones',
-    unit: '%',
-    kind: 'tasa-estado',
-    category: 'cambiario',
-    frequency: 'diaria',
-    color: '#6ec6e8',
-    decimals: 1,
-    // §5.3 — indicador derivado, no publicado por ninguna fuente.
-    computed: { op: 'brecha', inputs: ['usd_blue', 'usd_official'] },
-    series: [],
-    breaks: [],
-  },
-  {
-    id: 'usd_ccl',
-    label: 'Dólar contado con liqui',
-    description: 'Cotización implícita en la compraventa de activos con liquidación en el exterior',
-    unit: 'ARS / USD',
-    kind: 'nivel',
-    category: 'cambiario',
-    frequency: 'diaria',
-    color: '#5d8fb3',
-    decimals: 0,
-    originLabel: 'Relevamiento de mercado, vía ArgentinaDatos',
-    series: dolar('contadoconliqui', '2013-01-02'),
-    breaks: [],
-  },
-  {
-    id: 'usd_mep',
-    label: 'Dólar MEP',
-    description: 'Cotización implícita en la compraventa de bonos en el mercado local',
-    unit: 'ARS / USD',
-    kind: 'nivel',
-    category: 'cambiario',
-    frequency: 'diaria',
-    color: '#7aa6c2',
-    decimals: 0,
-    originLabel: 'Relevamiento de mercado, vía ArgentinaDatos',
-    series: dolar('bolsa', '2018-10-29'),
-    breaks: [],
-  },
-  {
-    id: 'usd_card',
-    label: 'Dólar tarjeta',
-    description: 'Cotización aplicable a consumos en el exterior, con impuestos incluidos',
-    unit: 'ARS / USD',
-    kind: 'nivel',
-    category: 'cambiario',
-    frequency: 'diaria',
-    color: '#96b8ce',
-    decimals: 0,
-    originLabel: 'Relevamiento de mercado, vía ArgentinaDatos',
-    series: dolar('tarjeta', '2019-12-23'),
-    breaks: [],
-  },
   {
     id: 'rate_fixed_term',
     label: 'Tasa de plazo fijo',

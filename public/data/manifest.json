@@ -82,16 +82,6 @@
       ]
     },
     {
-      "indicatorId": "country_risk",
-      "rows": 7689,
-      "from": "1999-01-22",
-      "to": "2026-08-27",
-      "fetchedAt": "2026-08-28T22:20:17.985Z",
-      "organismos": [
-        "ArgentinaDatos (redistribuye el EMBI+ de J.P. Morgan)"
-      ]
-    },
-    {
       "indicatorId": "wb_gini_arg",
       "rows": 36,
       "from": "1980-01-01",
@@ -192,36 +182,6 @@
       ]
     },
     {
-      "indicatorId": "usd_blue",
-      "rows": 5717,
-      "from": "2011-01-03",
-      "to": "2026-08-28",
-      "fetchedAt": "2026-08-28T22:20:29.547Z",
-      "organismos": [
-        "ArgentinaDatos (redistribuye el EMBI+ de J.P. Morgan)"
-      ]
-    },
-    {
-      "indicatorId": "usd_official",
-      "rows": 5717,
-      "from": "2011-01-03",
-      "to": "2026-08-28",
-      "fetchedAt": "2026-08-28T22:20:29.825Z",
-      "organismos": [
-        "ArgentinaDatos (redistribuye el EMBI+ de J.P. Morgan)"
-      ]
-    },
-    {
-      "indicatorId": "usd_gap",
-      "rows": 5717,
-      "from": "2011-01-03",
-      "to": "2026-08-28",
-      "fetchedAt": "2026-08-28T22:21:13.916Z",
-      "organismos": [
-        "ArgentinaDatos (redistribuye el EMBI+ de J.P. Morgan)"
-      ]
-    },
-    {
       "indicatorId": "real_wage",
       "rows": 273,
       "from": "2003-01-01",
@@ -262,16 +222,6 @@
       ]
     },
     {
-      "indicatorId": "inflation_1943",
-      "rows": 1001,
-      "from": "1943-03-31",
-      "to": "2026-07-31",
-      "fetchedAt": "2026-08-28T22:20:28.389Z",
-      "organismos": [
-        "ArgentinaDatos (redistribuye el EMBI+ de J.P. Morgan)"
-      ]
-    },
-    {
       "indicatorId": "basket_total",
       "rows": 124,
       "from": "2016-04-01",
@@ -279,36 +229,6 @@
       "fetchedAt": "2026-08-28T22:20:29.270Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
-      ]
-    },
-    {
-      "indicatorId": "usd_ccl",
-      "rows": 4987,
-      "from": "2013-01-02",
-      "to": "2026-08-28",
-      "fetchedAt": "2026-08-28T22:20:30.099Z",
-      "organismos": [
-        "ArgentinaDatos (redistribuye el EMBI+ de J.P. Morgan)"
-      ]
-    },
-    {
-      "indicatorId": "usd_mep",
-      "rows": 2861,
-      "from": "2018-10-29",
-      "to": "2026-08-28",
-      "fetchedAt": "2026-08-28T22:20:30.375Z",
-      "organismos": [
-        "ArgentinaDatos (redistribuye el EMBI+ de J.P. Morgan)"
-      ]
-    },
-    {
-      "indicatorId": "usd_card",
-      "rows": 2441,
-      "from": "2019-12-23",
-      "to": "2026-08-28",
-      "fetchedAt": "2026-08-28T22:20:30.645Z",
-      "organismos": [
-        "ArgentinaDatos (redistribuye el EMBI+ de J.P. Morgan)"
       ]
     },
     {

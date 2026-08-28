@@ -100,22 +100,6 @@ describe('indicadores calculados (§5.3)', () => {
     }
   })
 
-  it('la brecha cambiaria da valores plausibles', () => {
-    const raw = JSON.parse(readFileSync(join(DATA_DIR, 'usd_gap.json'), 'utf8'))
-    const file = parseSnapshot(raw, 'usd_gap')
-    const byDate = new Map(file.points.map((p) => [p.date, p.value]))
-
-    // Máximo del cepo, antes de la unificación de diciembre de 2023.
-    const max = Math.max(...file.points.map((p) => p.value))
-    expect(max).toBeGreaterThan(150)
-    expect(max).toBeLessThan(400)
-    // Con el mercado unificado la brecha es chica.
-    const ultimo = file.points[file.points.length - 1].value
-    expect(Math.abs(ultimo)).toBeLessThan(30)
-    // Diciembre de 2023, antes del traspaso: brecha alta.
-    expect(byDate.get('2023-12-09')).toBeGreaterThan(100)
-  })
-
   it('el salario real deflactado por San Luis no se multiplica de forma implausible', () => {
     // Deflactar por el IPC del período de intervención sobrestima el salario
     // real; con un deflactor continuo la serie se mantiene en otro orden.

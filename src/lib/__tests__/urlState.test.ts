@@ -85,4 +85,17 @@ describe('estado en la URL (RF-7.1)', () => {
   it('sin parámetro de paneles cae al estado inicial', () => {
     expect(decodeState('#d=2020-01-01..2021-01-01', base).panels).toEqual(base.panels)
   })
+
+  // Un enlace compartido sobrevive a los cambios de catálogo: getIndicator
+  // lanza con un id desconocido y se llama durante el render, así que dejar
+  // pasar uno dado de baja dejaría la pantalla en blanco.
+  it('descarta indicadores que ya no están en el registro', () => {
+    const panel = decodeState('#p=inflation,usd_blue', base).panels[0]
+    expect(panel.indicators).toEqual(['inflation'])
+  })
+
+  it('un panel que solo tenía series dadas de baja queda vacío, no roto', () => {
+    const panel = decodeState('#p=usd_blue,country_risk', base).panels[0]
+    expect(panel.indicators).toEqual([])
+  })
 })

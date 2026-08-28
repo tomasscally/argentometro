@@ -1,8 +1,10 @@
 # Monitor Estadístico Argentina — Requerimientos funcionales
 
-**Versión:** 2.7 · **Fecha:** 2026-08-28 · **Estado:** construido — F0 a F5 completas, 77 indicadores
+**Versión:** 2.8 · **Fecha:** 2026-08-28 · **Estado:** construido — F0 a F5 completas, 69 indicadores
 
-> **Cambios respecto de la v2.6:** las variaciones por período se pueden ver como **acumulado en base 100 al inicio del período visible** (RF-3.95 a RF-3.99).
+> **Cambios respecto de la v2.7:** se **da de baja la fuente S2 (ArgentinaDatos)** y con ella los 8 indicadores que dependían de un agregador: riesgo país, inflación serie larga, las cinco cotizaciones del dólar y la brecha cambiaria. Es una revisión del criterio de §4.5: un tercero que redistribuye dato de otro no permite verificar contra el emisor qué se publicó ni cuándo cambió, y ninguna serie del sitio debería descansar en eso. RF-9.4 queda sin fuentes a las que aplicar, y la brecha cambiaria de §8 deja de ser construible (L18).
+>
+> **Cambios de la v2.6 a la v2.7:** las variaciones por período se pueden ver como **acumulado en base 100 al inicio del período visible** (RF-3.95 a RF-3.99).
 >
 > **Cambios de la v2.5 a la v2.6:** la verificación del catálogo contra el dump oficial de metadatos deja de ser manual y pasa a ser **un script que corre en el job diario** (RF-0.14 a RF-0.17). Se documenta que las fechas de cobertura del dump pueden ir por detrás de la API (L17).
 >
@@ -135,7 +137,7 @@ Las seis fuentes propuestas en la v1.1 fueron **aprobadas el 2026-08-27**. La co
 |---|---|---|---|---|---|---|
 | — | **Series de Tiempo AR** (Ministerio de Economía) | `apis.datos.gob.ar` | Primaria / Secundaria oficial | Sí | v1.0 | **Lista** — endpoints verificados |
 | S1 | **BCRA API v4.0** | `api.bcra.gob.ar` | Primaria (monetario) / Secundaria oficial (IPC) | Sí | 2026-08-27 | **Lista** — endpoints y datos verificados |
-| S2 | **ArgentinaDatos** | `api.argentinadatos.com` | Agregador | Sí | 2026-08-27 | **Lista** — endpoint verificado |
+| S2 | **ArgentinaDatos** | `api.argentinadatos.com` | Agregador | Sí | 2026-08-27 | **Dada de baja (v2.8)** — agregador, no verificable contra el emisor |
 | S3 | **World Bank Open Data** | `api.worldbank.org` | Secundaria (multilateral) | Sí | 2026-08-27 | **Lista** — endpoint verificado |
 | S4 | **INDEC** | `indec.gob.ar` | Primaria | No | 2026-08-27 | **URL a resolver** — ver §4.6 |
 | S5 | **Secretaría de Finanzas** | `argentina.gob.ar` | Primaria | No | 2026-08-27 | **URL a resolver, fuente frágil** — ver §4.6 |
@@ -183,7 +185,7 @@ Todas verificadas el 2026-08-27. Esta lista es la que alimenta la sección de fu
 |---|---|---|---|
 | **Series de Tiempo AR** — Ministerio de Economía | aprobada | [datosgobar.github.io/series-tiempo-ar-api](https://datosgobar.github.io/series-tiempo-ar-api/) · [datos.gob.ar](https://datos.gob.ar/) | `apis.datos.gob.ar/series/api/series` |
 | **S1 · BCRA** | aprobada | [Catálogo de APIs del BCRA](https://www.bcra.gob.ar/BCRAyVos/catalogo-de-APIs-banco-central.asp) | `api.bcra.gob.ar/estadisticas/v4.0/monetarias` |
-| **S2 · ArgentinaDatos** | aprobada | [argentinadatos.com](https://argentinadatos.com/) | `api.argentinadatos.com/v1/finanzas/indices/riesgo-pais` |
+| **S2 · ArgentinaDatos** | ~~aprobada~~ **dada de baja (v2.8)** | [argentinadatos.com](https://argentinadatos.com/) | — |
 | **S3 · World Bank Open Data** | aprobada | [Documentación de la API](https://datahelpdesk.worldbank.org/knowledgebase/topics/125589) | `api.worldbank.org/v2/country/ARG/indicator/{codigo}` |
 | **S4 · INDEC** | aprobada | [indec.gob.ar](https://www.indec.gob.ar/) | sin CORS — snapshot |
 | **S5 · Secretaría de Finanzas** | aprobada | [argentina.gob.ar/economia/finanzas](https://www.argentina.gob.ar/economia/finanzas) | sin CORS — snapshot |
@@ -203,6 +205,8 @@ En la práctica, incorporar riesgo país significa elegir un **redistribuidor**.
 - **ArgentinaDatos** (S2): funciona, tiene CORS, cobertura 1999→hoy. Es comunitario.
 - **Ámbito Financiero**: bloquea el acceso programático (403).
 - **Suscripción a J.P. Morgan o a un proveedor de mercado**: sería la fuente primaria real, con costo y probablemente con restricciones de redistribución que chocan con el criterio 5 y con el carácter público del sitio.
+
+> **Revertido en v2.8: S2 fue dada de baja.** El párrafo siguiente registra la decisión original y por qué se tomó; el criterio que la reemplaza está en L18.
 
 **S2 fue aprobada.** El requerimiento asociado queda firme: la UI rotula el indicador como *"EMBI+ J.P. Morgan, vía ArgentinaDatos"*, dejando visible que no es acceso directo al emisor (RF-9.4). Y como el agregador no tiene SLA, aplica RF-2.2: si cae, se muestra el error, no se sustituye en silencio.
 
@@ -268,7 +272,7 @@ Todos entran al catálogo. Los tres primeros son construibles ya; los tres últi
 | **Reservas diarias** | S1 BCRA | `monetarias/1` | Diaria | 2014-04 → 2026-08 | Construible |
 | **Tipo de cambio mayorista diario** | S1 BCRA | `monetarias/5` | Diaria | 2014-04 → 2026-08 | Construible |
 | **Base monetaria** | S1 BCRA | `monetarias/15` | Diaria | 2014-04 → 2026-08 | Construible |
-| **Riesgo país (EMBI+)** | S2 ArgentinaDatos | `/v1/finanzas/indices/riesgo-pais` | Diaria | 1999-01-22 → 2026-08-24 | Construible |
+| **Riesgo país (EMBI+)** | ~~S2 ArgentinaDatos~~ | — | — | — | **Dado de baja (v2.8)** — sin fuente auditable |
 | **Pobreza · comparación internacional** | S3 World Bank | `SI.POV.NAHC` | Anual | serie larga | Construible |
 | **Gini · comparación internacional** | S3 World Bank | `SI.POV.GINI` | Anual | serie larga | Construible |
 | **Indigencia (% de población)** | S4 INDEC | a resolver (§4.6) | Semestral | — | Bloqueado por URL |
@@ -378,6 +382,7 @@ Estas limitaciones son propiedades de la realidad estadística argentina, no def
 - **L8 — Rezago de publicación.** Cada serie tiene su propio rezago (pobreza ~6 meses, EPH ~3 meses, IPC ~2 semanas). La UI muestra la fecha del último dato disponible por indicador.
 - **L9 — Los snapshots no se actualizan solos.** Los datos que ingresen por RF-0.6 tienen la antigüedad de su última captura. La UI debe mostrar la fecha de captura, y el proceso de release debe incluir su refresco.
 - **L10 — El sitio del INDEC hace soft-404.** Devuelve HTTP 200 con una página HTML de ~37 KB ante rutas de archivo inexistentes. Un script que solo mire el código de estado guardaría esa página como si fuera dato. De ahí RF-0.8: validar contenido y estructura, y fallar ruidosamente.
+- **L18 — Un agregador no se puede auditar contra el emisor.** S2 se aprobó en su momento porque era el único acceso programático con CORS al EMBI+ y a las cotizaciones informales, y se aceptó el costo rotulando emisor y vía (RF-9.4). El costo real es otro: de un redistribuidor no se puede verificar qué publicó el emisor ni cuándo cambió de criterio, y las series informales no tienen emisor oficial contra el cual contrastar. El sitio ofrece «datos de fuentes oficiales y su metodología a la vista»; una serie que nadie puede auditar contradice esa promesa aunque el número sea correcto. De ahí la baja en v2.8. Nota: el tipo de cambio **oficial** no se pierde, porque el BCRA lo publica como Comunicación A 3500 (`exchange_rate`); lo que se pierde es el mercado informal, que ningún organismo releva.
 - **L17 — Las fechas de cobertura del dump pueden ir por detrás de la API.** El dump de metadatos es autoritativo para saber si una serie existe y si sigue publicándose —para eso lo señala la documentación—, pero su columna de última fecha no siempre está al día: en la serie de pobreza informa 2025-07 mientras la API entrega hasta 2026-01. Por eso la actualidad se mide contra lo que efectivamente se descargó, no contra el dump.
 - **L16 — Colapsar una serie diaria desplaza el dato en el tiempo.** La agregación `collapse=month&collapse_aggregation=end_of_period` de `apis.datos.gob.ar` devuelve el valor del **último día** del mes etiquetado con el **primer día** del mes. Con el tipo de cambio de diciembre de 2023 eso significaba atribuir 808,48 —resultado de la devaluación del 13 de diciembre— a una gestión que terminó el 10. El error no está en la API, que documenta lo que hace, sino en colapsar una serie cuya resolución temporal es justamente lo que importa para comparar entre gestiones. De ahí RF-1.4 y RF-1.12.
 - **L15 — La comparabilidad internacional es limitada y hay que decirlo.** Cada país mide con su propia metodología, y el instrumento depende del indicador. En los que salen de encuestas de hogares —pobreza, desigualdad, informalidad— el instrumento es la encuesta de cada país: EPH continua en Argentina, PNAD y PNADC en Brasil, ENAHO en Perú, GEIH en Colombia, ENEMDU en Ecuador, ENCOVI en Guatemala. En otros es el sistema de cuentas nacionales, como el producto, o un índice de precios, como la inflación. Bases armonizadas como SEDLAC homogeneizan el procesamiento, no el instrumento, y las definiciones cambian con el tiempo dentro de cada país. La consecuencia práctica: conviene leer la evolución de cada serie antes que la diferencia de nivel entre países.
@@ -636,7 +641,7 @@ Las dos opciones evaluadas:
 - **RF-9.1** Página o panel de metodología con: registro de fuentes y su estado, identificador de cada serie, fórmulas de §7.2, quiebres declarados y las limitaciones de §6 en lenguaje llano.
 - **RF-9.2** Cada indicador muestra su organismo fuente, el nivel de la fuente (§4.3) y enlace al dataset de origen.
 - **RF-9.3** Un aviso permanente y visible aclara de qué fuentes provienen los datos y que la aplicación no los modifica más allá de los cálculos declarados.
-- **RF-9.4** Los indicadores que provienen de un agregador (§4.3) se rotulan indicando emisor y vía — por ejemplo *"EMBI+ J.P. Morgan, vía ArgentinaDatos"*.
+- **RF-9.4** Los indicadores que provienen de un agregador (§4.3) se rotulan indicando emisor y vía — por ejemplo *"EMBI+ J.P. Morgan, vía ArgentinaDatos"*. **Desde v2.8 no hay ninguna fuente de nivel agregador en el registro**, así que la regla no tiene hoy a qué aplicarse; se conserva porque es la condición que tendría que cumplir cualquier agregador que se admitiera en el futuro.
 - **RF-9.5** La aplicación tiene una **sección dedicada de fuentes de datos**, accesible desde la navegación principal, que enumera todas las fuentes utilizadas y **provee el link a cada una**.
 - **RF-9.6** Cada entrada incluye: organismo, nivel de fuente, qué indicadores aporta, identificadores de serie, condiciones de uso, fecha de última verificación y **enlace directo** a la API, al dataset o a la publicación de origen.
 - **RF-9.7** Cuando la fuente lo permite, el enlace es profundo: apunta al dataset o a la serie concreta, no solo al home del organismo.
@@ -820,4 +825,4 @@ Cosas que solo aparecieron al escribir el código y que cambiaron el documento.
 
 **El salario real depende enteramente del deflactor que se elija.** Al construirlo apareció el efecto más fuerte de L2. Deflactando el RIPTE por el IPC oficial, el salario real se multiplica por 5,4 entre 2003 y 2019 —un resultado implausible—. Deflactando por el IPC de San Luis, que no se interrumpe ni cambia de metodología en ese tramo, pasa de 100 a 107: prácticamente plano. La diferencia no está en el cálculo sino en el deflactor. Se publican las dos variantes, con la advertencia declarada como quiebre del indicador, en lugar de elegir una y presentarla como el salario real.
 
-**La brecha cambiaria no existe en fuentes oficiales.** Ningún organismo publica la cotización informal. Se calcula a partir de las cotizaciones que redistribuye ArgentinaDatos, rotulada como tal. Los valores obtenidos son consistentes con lo conocido: 225,6 % de máximo en octubre de 2023, 147 % en el traspaso de diciembre de 2023, y 1,3 % con el mercado unificado.
+**La brecha cambiaria no existe en fuentes oficiales — y desde v2.8 no se construye.** Ningún organismo publica la cotización informal. Se calculaba a partir de las cotizaciones que redistribuía ArgentinaDatos, rotulada como tal; dada de baja esa fuente (L18), el indicador se retira: no hay cotización informal auditable con la que construirlo. El operador `brecha` se conserva en el motor de cálculo, sin usuarios. Los valores obtenidos son consistentes con lo conocido: 225,6 % de máximo en octubre de 2023, 147 % en el traspaso de diciembre de 2023, y 1,3 % con el mercado unificado.

@@ -40,7 +40,6 @@ const CATEGORY_ORDER: Category[] = [
 const SOURCE_ORDER: SourceId[] = [
   'datos-gob-ar',
   'bcra',
-  'argentinadatos',
   'cedlas',
   'world-bank',
   'indec',
@@ -203,7 +202,6 @@ const LEVEL_NOTE: Record<string, string> = {
 const SOURCE_SHORT: Record<SourceId, string> = {
   'datos-gob-ar': 'datos.gob.ar',
   bcra: 'BCRA',
-  argentinadatos: 'ArgentinaDatos',
   'world-bank': 'Banco Mundial',
   cedlas: 'CEDLAS',
   indec: 'INDEC',
