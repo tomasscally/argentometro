@@ -9,6 +9,8 @@ import { MethodologyPanel } from './components/MethodologyPanel'
 import { todayISO } from './lib/dates'
 import { readHash, writeHash, type PanelState, type ViewState } from './lib/urlState'
 import { GlossaryContext } from './lib/glossaryContext'
+import { CafecitoButton } from './components/CafecitoButton'
+import { registrarPanel } from './lib/analytics'
 import type { GlossaryTermId } from './lib/glossary'
 
 type Panel = 'datos' | 'fuentes' | 'metodologia'
@@ -42,6 +44,12 @@ export default function App() {
   useEffect(() => {
     writeHash(view)
   }, [view])
+
+  // Una vista medida por panel abierto, incluido el inicial. El hash cambia con
+  // cada control y no sirve como unidad de medición.
+  useEffect(() => {
+    registrarPanel(panel)
+  }, [panel])
 
   // Volver o avanzar en el navegador cambia la vista.
   useEffect(() => {
@@ -120,6 +128,9 @@ export default function App() {
           >
             Metodología
           </button>
+          <div className="mt-4">
+            <CafecitoButton />
+          </div>
         </footer>
       </main>
       </div>
