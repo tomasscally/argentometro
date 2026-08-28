@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#030712"/>
+  <rect x="80" y="180" width="180" height="300" fill="#9CCDEC" opacity="0.12"/>
+  <rect x="260" y="180" width="150" height="300" fill="#559CCC" opacity="0.12"/>
+  <rect x="410" y="180" width="150" height="300" fill="#E8B923" opacity="0.12"/>
+  <rect x="560" y="180" width="150" height="300" fill="#3480B4" opacity="0.12"/>
+  <rect x="710" y="180" width="130" height="300" fill="#8B45B5" opacity="0.12"/>
+  <polyline points="80,440 200,430 320,410 410,380 500,340 560,320 650,270 710,230 840,150"
+            fill="none" stroke="#d94a4a" stroke-width="5" stroke-linecap="round"/>
+  <text x="80" y="120" fill="#f3f4f6" font-family="system-ui,sans-serif" font-size="54" font-weight="600">
+    Monitor Estadístico Argentina
+  </text>
+  <text x="80" y="545" fill="#9ca3af" font-family="system-ui,sans-serif" font-size="26">
+    Indicadores económicos y sociales por gestión presidencial
+  </text>
+  <text x="80" y="583" fill="#6b7280" font-family="system-ui,sans-serif" font-size="20">
+    Datos de INDEC, BCRA y fuentes aprobadas · metodología a la vista
+  </text>
+</svg>

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+
+# Vite deja acá su caché de dependencias.
+.vite/
+
+# Las copias de datos SÍ se commitean: son lo que la aplicación publica.
+# Solo se ignora lo que baja el script de verificación de forma temporal.
+*.log
+.DS_Store

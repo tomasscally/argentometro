@@ -1,0 +1,57 @@
+# Refresco diario de las copias locales de datos.
+#
+# La aplicación es estática y no puede escribir en el servidor, así que la
+# actualización no la dispara la visita de un usuario: la hace este job, que
+# consulta las fuentes una vez por día, commitea la copia si cambió y dispara
+# el deploy. El resultado para el visitante es el mismo —el dato del día ya
+# está cuando entra— y no hay que actualizar nada a mano.
+name: Actualizar datos
+
+on:
+  schedule:
+    # 09:00 UTC = 06:00 en Argentina, después de la publicación habitual.
+    - cron: '0 9 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-datos
+  cancel-in-progress: true
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Tomar copia de las fuentes
+        run: npm run snapshot
+
+      - name: Verificar que la copia es usable
+        run: npm test
+
+      # Contra el dump oficial de metadatos: es la única forma de enterarse de
+      # que una serie dejó de publicarse sin que la API devuelva error.
+      - name: Verificar que las series siguen publicándose
+        run: npm run verificar-series
+
+      - name: Commitear si cambió
+        run: |
+          if [ -z "$(git status --porcelain public/data)" ]; then
+            echo "Sin cambios en los datos."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add public/data
+          git commit -m "datos: copia del $(date -u +%Y-%m-%d)"
+          git push
