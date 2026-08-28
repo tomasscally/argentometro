@@ -1,13 +1,17 @@
 # Publicación del sitio estático en GitHub Pages.
 #
-# Se dispara con cada push a main —incluido el commit diario de datos— así que
-# el sitio queda actualizado sin intervención manual.
+# Se dispara con cada push a main, y el refresco diario de datos la invoca
+# directamente, así que el sitio queda actualizado sin intervención manual.
 name: Publicar
 
 on:
   push:
     branches: [main]
   workflow_dispatch: {}
+  # Invocable por el job de datos: un push hecho con el GITHUB_TOKEN no dispara
+  # workflows, así que el refresco diario tiene que llamar a la publicación en
+  # lugar de confiar en que su propio commit la despierte.
+  workflow_call: {}
 
 permissions:
   contents: read

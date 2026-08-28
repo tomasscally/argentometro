@@ -2,9 +2,9 @@
 #
 # La aplicación es estática y no puede escribir en el servidor, así que la
 # actualización no la dispara la visita de un usuario: la hace este job, que
-# consulta las fuentes una vez por día, commitea la copia si cambió y dispara
-# el deploy. El resultado para el visitante es el mismo —el dato del día ya
-# está cuando entra— y no hay que actualizar nada a mano.
+# consulta las fuentes una vez por día, commitea la copia si cambió y llama a
+# la publicación. El resultado para el visitante es el mismo —el dato del día
+# ya está cuando entra— y no hay que actualizar nada a mano.
 name: Actualizar datos
 
 on:
@@ -23,6 +23,8 @@ concurrency:
 jobs:
   snapshot:
     runs-on: ubuntu-latest
+    outputs:
+      cambio: ${{ steps.commit.outputs.cambio }}
     steps:
       - uses: actions/checkout@v4
 
@@ -45,9 +47,11 @@ jobs:
         run: npm run verificar-series
 
       - name: Commitear si cambió
+        id: commit
         run: |
           if [ -z "$(git status --porcelain public/data)" ]; then
             echo "Sin cambios en los datos."
+            echo 'cambio=false' >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name 'github-actions[bot]'
@@ -55,3 +59,15 @@ jobs:
           git add public/data
           git commit -m "datos: copia del $(date -u +%Y-%m-%d)"
           git push
+          echo 'cambio=true' >> "$GITHUB_OUTPUT"
+
+  # Solo si la copia cambió: publicar de nuevo lo mismo no le sirve a nadie y
+  # compite por el grupo de concurrencia con los deploys de un push real.
+  publicar:
+    needs: snapshot
+    if: needs.snapshot.outputs.cambio == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy.yml
