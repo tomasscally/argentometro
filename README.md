@@ -6,6 +6,8 @@ Comparar la evolución de indicadores económicos y sociales argentinos entre
 gestiones presidenciales y entre países, con datos de fuentes aprobadas y la
 metodología a la vista.
 
+**https://tomasscally.github.io/argentometro/**
+
 Los requerimientos completos están en
 [docs/requerimientos-funcionales.md](docs/requerimientos-funcionales.md).
 
@@ -77,8 +79,12 @@ Queda con procedencia registrada, y el historial de git es la auditoría.
 ## Publicación
 
 El sitio es estático y se publica en GitHub Pages con `.github/workflows/deploy.yml`,
-que corre en cada push a `main` —incluido el commit diario de datos— después de
-pasar lint, tests y build.
+que corre en cada push a `main` después de pasar lint, tests y build.
+
+El refresco diario de datos lo **invoca** en lugar de esperar que su propio
+commit lo despierte: GitHub no dispara workflows con eventos originados por el
+`GITHUB_TOKEN`, así que un deploy encadenado por push nunca llegaría a correr y
+el sitio se quedaría con la copia anterior.
 
 Para activarlo, en el repositorio: **Settings → Pages → Source: GitHub Actions**.
 
@@ -88,6 +94,26 @@ permissions → Read and write permissions**.
 
 El sitio funciona igual en la raíz de un dominio o en un subdirectorio: Vite está
 configurado con `base: './'` y las rutas son relativas.
+
+## Medición y apoyo
+
+Los dos valores que no salen de ninguna fuente estadística —la cuenta de
+cafecito.app y el contenedor de Google Tag Manager— están en
+[src/config/site.ts](src/config/site.ts), que es el único lugar donde tocarlos.
+Cualquiera de los dos vacío desactiva lo suyo: sin contenedor no se carga ningún
+script de terceros, y sin cuenta no se muestra el botón.
+
+Al dataLayer se empujan hechos de la aplicación, no etiquetas; qué se hace con
+ellos se decide en GTM:
+
+| Evento | Cuándo |
+|---|---|
+| `panel_view` | se abre un panel; trae `panel` con `datos`, `fuentes` o `metodologia` |
+| `cafecito` | click en el botón de apoyo |
+
+No se sigue el hash de la URL: cambia con cada control (RF-7.1) y llenaría el
+informe de ruido sin decir qué se está mirando. El panel es la unidad que
+significa algo.
 
 ## Licencia
 
