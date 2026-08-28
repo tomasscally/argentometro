@@ -1,4 +1,4 @@
-# Monitor Estadístico Argentina — Requerimientos funcionales
+# Argentómetro — Requerimientos funcionales
 
 **Versión:** 2.8 · **Fecha:** 2026-08-28 · **Estado:** construido — F0 a F5 completas, 69 indicadores
 

@@ -27,7 +27,7 @@ function breakLines(indicator: Indicator): string[] {
 
 export function buildCsv(series: ExportSeries[], generatedAt: string): string {
   const lines: string[] = [
-    '# Monitor Estadístico Argentina',
+    '# Argentómetro',
     `# Exportado: ${generatedAt}`,
     '# Los datos provienen de las fuentes indicadas y no fueron modificados',
     '# más allá de la escala declarada.',

@@ -7,8 +7,8 @@
   <rect x="710" y="180" width="130" height="300" fill="#8B45B5" opacity="0.12"/>
   <polyline points="80,440 200,430 320,410 410,380 500,340 560,320 650,270 710,230 840,150"
             fill="none" stroke="#d94a4a" stroke-width="5" stroke-linecap="round"/>
-  <text x="80" y="120" fill="#f3f4f6" font-family="system-ui,sans-serif" font-size="54" font-weight="600">
-    Monitor Estadístico Argentina
+  <text x="80" y="130" fill="#f3f4f6" font-family="system-ui,sans-serif" font-size="76" font-weight="600">
+    Argentómetro
   </text>
   <text x="80" y="545" fill="#9ca3af" font-family="system-ui,sans-serif" font-size="26">
     Indicadores económicos y sociales por gestión presidencial

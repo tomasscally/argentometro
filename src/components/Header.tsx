@@ -28,7 +28,7 @@ export function Header({ panel, onPanel }: Props) {
           </div>
           <div>
             <h1 className="text-base font-semibold text-gray-100 leading-none">
-              Monitor Estadístico
+              Argentómetro
             </h1>
             <p className="text-xs text-gray-500 mt-0.5">
               Argentina · Indicadores económico-sociales

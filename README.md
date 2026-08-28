@@ -1,7 +1,5 @@
 # Argentómetro
 
-**Monitor Estadístico Argentina**
-
 Comparar la evolución de indicadores económicos y sociales argentinos entre
 gestiones presidenciales y entre países, con datos de fuentes aprobadas y la
 metodología a la vista.
