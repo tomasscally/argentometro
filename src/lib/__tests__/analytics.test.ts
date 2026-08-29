@@ -2,9 +2,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 
 /**
  * La medición no puede depender de que alguien mire el informe para darse
- * cuenta de que no anda. Lo que se verifica acá es lo que no se ve: que sin
- * contenedor configurado no se contacte a Google, y que lo que se empuja al
- * dataLayer sea lo que GTM espera encontrar.
+ * cuenta de que no anda. Lo que se verifica acá es lo que no se ve: que sin ID
+ * configurado no se contacte a Google, y que lo que se encola sea lo que
+ * gtag.js espera encontrar cuando termina de cargar.
  */
 
 interface ScriptFalso {
@@ -31,19 +31,21 @@ function montarDom() {
   return { insertados }
 }
 
-/** Recarga el módulo con el contenedor que pida cada caso. */
-async function cargarCon(contenedor: string) {
+/** Recarga el módulo con el ID que pida cada caso. */
+async function cargarCon(id: string) {
   vi.resetModules()
   vi.doMock('../../config/site', () => ({
-    GTM_CONTAINER_ID: contenedor,
+    GA_MEASUREMENT_ID: id,
     CAFECITO_USER: 'irrelevante',
   }))
   return import('../analytics')
 }
 
-function eventos(): Record<string, unknown>[] {
+function encolado(): unknown[] {
   return (window as Window).dataLayer ?? []
 }
+
+const ID = 'G-ABCDEFGHIJ'
 
 afterEach(() => {
   vi.unstubAllGlobals()
@@ -51,39 +53,40 @@ afterEach(() => {
   vi.doUnmock('../../config/site')
 })
 
-describe('reconocimiento del contenedor', () => {
-  it('acepta un contenedor de GTM', async () => {
-    const { idConfigurado } = await cargarCon('GTM-MHV3GRK8')
-    expect(idConfigurado('GTM-MHV3GRK8')).toBe(true)
+describe('reconocimiento del measurement ID', () => {
+  it('acepta un ID de GA4', async () => {
+    const { idConfigurado } = await cargarCon(ID)
+    expect(idConfigurado(ID)).toBe(true)
   })
 
-  it('rechaza un measurement ID de GA4, que no es lo mismo', async () => {
-    const { idConfigurado } = await cargarCon('GTM-MHV3GRK8')
-    expect(idConfigurado('G-ABCDEFGHIJ')).toBe(false)
+  it('rechaza un contenedor de GTM, que no es lo mismo', async () => {
+    const { idConfigurado } = await cargarCon(ID)
+    expect(idConfigurado('GTM-MHV3GRK8')).toBe(false)
   })
 
-  it('rechaza el vacío y la basura', async () => {
-    const { idConfigurado } = await cargarCon('GTM-MHV3GRK8')
+  it('rechaza el vacío, la basura y un ID de largo equivocado', async () => {
+    const { idConfigurado } = await cargarCon(ID)
     expect(idConfigurado('')).toBe(false)
     expect(idConfigurado('pegar acá')).toBe(false)
+    expect(idConfigurado('G-ABC')).toBe(false)
   })
 })
 
 describe('arranque', () => {
-  it('sin contenedor no le pide nada a Google', async () => {
+  it('sin ID no le pide nada a Google', async () => {
     const { insertados } = montarDom()
     const { iniciarAnalytics } = await cargarCon('')
 
     iniciarAnalytics()
 
     expect(insertados).toEqual([])
-    expect(eventos()).toEqual([])
+    expect(encolado()).toEqual([])
   })
 
-  it('con el contenedor mal escrito avisa y no carga nada', async () => {
+  it('con el ID mal escrito avisa y no carga nada', async () => {
     const { insertados } = montarDom()
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
-    const { iniciarAnalytics } = await cargarCon('MHV3GRK8')
+    const { iniciarAnalytics } = await cargarCon('ABCDEFGHIJ')
 
     iniciarAnalytics()
 
@@ -91,65 +94,78 @@ describe('arranque', () => {
     expect(warn).toHaveBeenCalledOnce()
   })
 
-  it('carga gtm.js del contenedor configurado', async () => {
+  it('carga gtag.js del ID configurado', async () => {
     const { insertados } = montarDom()
-    const { iniciarAnalytics } = await cargarCon('GTM-MHV3GRK8')
+    const { iniciarAnalytics } = await cargarCon(ID)
 
     iniciarAnalytics()
 
     expect(insertados).toHaveLength(1)
-    expect(insertados[0].src).toBe(
-      'https://www.googletagmanager.com/gtm.js?id=GTM-MHV3GRK8'
-    )
+    expect(insertados[0].src).toBe(`https://www.googletagmanager.com/gtag/js?id=${ID}`)
     expect(insertados[0].async).toBe(true)
-  })
-
-  it('deja el evento de arranque antes de cargar el script', async () => {
-    montarDom()
-    const { iniciarAnalytics } = await cargarCon('GTM-MHV3GRK8')
-
-    iniciarAnalytics()
-
-    expect(eventos()[0]).toMatchObject({ event: 'gtm.js' })
   })
 
   it('no carga el script dos veces', async () => {
     const { insertados } = montarDom()
-    const { iniciarAnalytics } = await cargarCon('GTM-MHV3GRK8')
+    const { iniciarAnalytics } = await cargarCon(ID)
 
     iniciarAnalytics()
     iniciarAnalytics()
 
     expect(insertados).toHaveLength(1)
   })
+
+  // Si el config mandara su propio pageview, la primera vista se contaría dos
+  // veces: una acá y otra en el efecto que registra el panel inicial.
+  it('el config no manda pageview: lo manda el panel', async () => {
+    montarDom()
+    const { iniciarAnalytics } = await cargarCon(ID)
+
+    iniciarAnalytics()
+
+    const config = encolado().find(
+      (a) => Array.isArray(a) && a[0] === 'config'
+    ) as unknown[]
+    expect(config[1]).toBe(ID)
+    expect(config[2]).toMatchObject({ send_page_view: false })
+  })
 })
 
-describe('hechos que se le informan a GTM', () => {
-  it('registra el panel abierto', async () => {
+describe('hechos que se le informan a Google', () => {
+  it('registra el panel abierto como una vista', async () => {
     montarDom()
-    const { registrarPanel } = await cargarCon('GTM-MHV3GRK8')
+    const { iniciarAnalytics, registrarPanel } = await cargarCon(ID)
 
+    iniciarAnalytics()
     registrarPanel('metodologia')
 
-    expect(eventos()).toContainEqual({ event: 'panel_view', panel: 'metodologia' })
+    expect(encolado()).toContainEqual([
+      'event',
+      'page_view',
+      { page_title: 'metodologia', page_path: '/metodologia' },
+    ])
   })
 
   it('registra el click en el botón de apoyo', async () => {
     montarDom()
-    const { registrarApoyo } = await cargarCon('GTM-MHV3GRK8')
+    const { iniciarAnalytics, registrarApoyo } = await cargarCon(ID)
 
+    iniciarAnalytics()
     registrarApoyo()
 
-    expect(eventos()).toContainEqual({ event: 'cafecito' })
+    expect(encolado()).toContainEqual(['event', 'cafecito', {}])
   })
 
-  it('sin contenedor no acumula eventos en el dataLayer', async () => {
+  // Sin gtag definido las funciones no pueden fallar: se llaman en cada cambio
+  // de panel, también cuando la medición está apagada.
+  it('sin arrancar la medición no rompen ni encolan nada', async () => {
     montarDom()
     const { registrarPanel, registrarApoyo } = await cargarCon('')
 
-    registrarPanel('datos')
-    registrarApoyo()
-
-    expect(eventos()).toEqual([])
+    expect(() => {
+      registrarPanel('datos')
+      registrarApoyo()
+    }).not.toThrow()
+    expect(encolado()).toEqual([])
   })
 })

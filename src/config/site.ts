@@ -15,11 +15,12 @@
 export const CAFECITO_USER = 'tomasscally'
 
 /**
- * Contenedor de Google Tag Manager: la «GTM-» que figura en Administrar ›
- * Instalar Google Tag Manager.
+ * Measurement ID de Google Analytics 4: la «G-» seguida de diez caracteres.
+ * Está en Analytics › Administrar › Flujos de datos, al abrir el flujo del
+ * sitio, arriba a la derecha.
  *
- * El contenedor es el que decide qué se mide; el sitio solo lo carga y le
- * avisa qué está pasando. Vacío deja el sitio sin medición y sin pedirle nada
- * a Google: no se carga ningún script de terceros hasta que esto tenga valor.
+ * Es lo único que hay que configurar para medir: pegar el ID acá y desplegar.
+ * Vacío deja el sitio sin medición y sin pedirle nada a Google, que es el
+ * estado esperado mientras no haya cuenta.
  */
-export const GTM_CONTAINER_ID = 'GTM-MHV3GRK8'
+export const GA_MEASUREMENT_ID = ''

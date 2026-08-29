@@ -99,22 +99,25 @@ configurado con `base: './'` y las rutas son relativas.
 ## Medición y apoyo
 
 Los dos valores que no salen de ninguna fuente estadística —la cuenta de
-cafecito.app y el contenedor de Google Tag Manager— están en
+cafecito.app y el measurement ID de Google Analytics 4— están en
 [src/config/site.ts](src/config/site.ts), que es el único lugar donde tocarlos.
-Cualquiera de los dos vacío desactiva lo suyo: sin contenedor no se carga ningún
-script de terceros, y sin cuenta no se muestra el botón.
+Cualquiera de los dos vacío desactiva lo suyo: sin ID no se carga ningún script
+de terceros, y sin cuenta no se muestra el botón.
 
-Al dataLayer se empujan hechos de la aplicación, no etiquetas; qué se hace con
-ellos se decide en GTM:
+Se mide con GA4 directo, sin Tag Manager en el medio: para contar visitas, el
+contenedor era una capa de configuración extra que no aportaba nada y ampliaba
+la superficie —cualquiera con acceso a él puede publicar JavaScript en el sitio
+sin pasar por el repositorio.
 
 | Evento | Cuándo |
 |---|---|
-| `panel_view` | se abre un panel; trae `panel` con `datos`, `fuentes` o `metodologia` |
+| `page_view` | se abre un panel; `page_path` es `/datos`, `/fuentes` o `/metodologia` |
 | `cafecito` | click en el botón de apoyo |
 
 No se sigue el hash de la URL: cambia con cada control (RF-7.1) y llenaría el
 informe de ruido sin decir qué se está mirando. El panel es la unidad que
-significa algo.
+significa algo, y por eso `config` va con `send_page_view: false`: si mandara
+su propia vista inicial, la primera se contaría dos veces.
 
 ## Licencia
 
