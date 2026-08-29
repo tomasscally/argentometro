@@ -23,4 +23,4 @@ export const CAFECITO_USER = 'tomasscally'
  * Vacío deja el sitio sin medición y sin pedirle nada a Google, que es el
  * estado esperado mientras no haya cuenta.
  */
-export const GA_MEASUREMENT_ID = ''
+export const GA_MEASUREMENT_ID = 'G-F716LGFW3M'
