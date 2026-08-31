@@ -11,11 +11,14 @@ import { GA_MEASUREMENT_ID } from '../config/site'
  * La medición es deliberadamente gruesa: interesa qué panel se mira, no cada
  * movimiento de un control. El estado viaja en el hash (RF-7.1) y cambia con
  * cada click, de modo que seguir el hash llenaría el informe de ruido.
+ *
+ * La vista inicial la cuenta gtag solo; acá se agregan los cambios de panel,
+ * que sin recarga de página no generarían ninguna.
  */
 
 type GtagArgs =
   | ['js', Date]
-  | ['config', string, Record<string, unknown>]
+  | ['config', string, Record<string, unknown>?]
   | ['event', string, Record<string, unknown>]
 
 declare global {
@@ -59,16 +62,24 @@ export function iniciarAnalytics(): void {
 
   const cola: unknown[] = window.dataLayer ?? []
   window.dataLayer = cola
-  // gtag empuja el objeto `arguments` tal cual: es lo que espera leer gtag.js
-  // cuando termina de cargar y procesa lo que se encoló antes.
-  window.gtag = (...args: GtagArgs) => {
-    cola.push(args)
-  }
+  // Se encola el objeto `arguments` y no un array: gtag.js reconoce sus
+  // comandos por recibir `arguments`, y con un array los ignora en silencio.
+  // Es lo que hace el snippet oficial y no hay motivo para desviarse.
+  // La firma tipada va afuera y el cuerpo no declara parámetros: `arguments`
+  // no se puede usar en una función que los declare.
+  const gtag = function (): void {
+    // La regla es buena en general; acá `arguments` es un requisito de gtag.js.
+    // eslint-disable-next-line prefer-rest-params
+    cola.push(arguments)
+  } as (...args: GtagArgs) => void
+  window.gtag = gtag
 
-  window.gtag('js', new Date())
-  // El pageview lo manda registrarPanel, que sabe qué se está mirando; dejarlo
-  // acá también contaría dos veces la primera vista.
-  window.gtag('config', GA_MEASUREMENT_ID, { send_page_view: false })
+  gtag('js', new Date())
+  // Sin `send_page_view: false`: la vista inicial la manda gtag al
+  // configurarse, igual que en el snippet oficial. Así la medición básica no
+  // depende de que la aplicación se acuerde de informar nada, y los cambios de
+  // panel se agregan aparte (registrarPanel).
+  gtag('config', GA_MEASUREMENT_ID)
 }
 
 /** Una vista por panel abierto: es la unidad que significa algo acá. */

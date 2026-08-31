@@ -45,6 +45,18 @@ function encolado(): unknown[] {
   return (window as Window).dataLayer ?? []
 }
 
+/**
+ * gtag.js reconoce sus comandos por recibir el objeto `arguments`. Un array
+ * plano lo ignora en silencio, así que el test comprueba las dos cosas: que lo
+ * encolado NO sea un array, y qué comando lleva adentro.
+ */
+function comandos(): unknown[][] {
+  return encolado().map((entrada) => {
+    expect(Array.isArray(entrada), 'se encoló un array en vez de `arguments`').toBe(false)
+    return Array.from(entrada as ArrayLike<unknown>)
+  })
+}
+
 const ID = 'G-ABCDEFGHIJ'
 
 afterEach(() => {
@@ -115,19 +127,17 @@ describe('arranque', () => {
     expect(insertados).toHaveLength(1)
   })
 
-  // Si el config mandara su propio pageview, la primera vista se contaría dos
-  // veces: una acá y otra en el efecto que registra el panel inicial.
-  it('el config no manda pageview: lo manda el panel', async () => {
+  it('encola los comandos de arranque que espera gtag.js', async () => {
     montarDom()
     const { iniciarAnalytics } = await cargarCon(ID)
 
     iniciarAnalytics()
 
-    const config = encolado().find(
-      (a) => Array.isArray(a) && a[0] === 'config'
-    ) as unknown[]
-    expect(config[1]).toBe(ID)
-    expect(config[2]).toMatchObject({ send_page_view: false })
+    const [js, config] = comandos()
+    expect(js[0]).toBe('js')
+    expect(js[1]).toBeInstanceOf(Date)
+    // La vista inicial la cuenta gtag: el config no la apaga.
+    expect(config).toEqual(['config', ID])
   })
 })
 
@@ -139,7 +149,7 @@ describe('hechos que se le informan a Google', () => {
     iniciarAnalytics()
     registrarPanel('metodologia')
 
-    expect(encolado()).toContainEqual([
+    expect(comandos()).toContainEqual([
       'event',
       'page_view',
       { page_title: 'metodologia', page_path: '/metodologia' },
@@ -153,7 +163,7 @@ describe('hechos que se le informan a Google', () => {
     iniciarAnalytics()
     registrarApoyo()
 
-    expect(encolado()).toContainEqual(['event', 'cafecito', {}])
+    expect(comandos()).toContainEqual(['event', 'cafecito', {}])
   })
 
   // Sin gtag definido las funciones no pueden fallar: se llaman en cada cambio

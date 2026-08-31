@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { DateRange } from './types'
 import { Header } from './components/Header'
 import { DateRangePicker } from './components/DateRangePicker'
@@ -45,9 +45,15 @@ export default function App() {
     writeHash(view)
   }, [view])
 
-  // Una vista medida por panel abierto, incluido el inicial. El hash cambia con
-  // cada control y no sirve como unidad de medición.
+  // La vista inicial la cuenta gtag al configurarse: acá se miden los cambios
+  // de panel, que sin recarga de página no generarían ninguna. El hash cambia
+  // con cada control y no sirve como unidad de medición.
+  const primerPanel = useRef(true)
   useEffect(() => {
+    if (primerPanel.current) {
+      primerPanel.current = false
+      return
+    }
     registrarPanel(panel)
   }, [panel])
 
