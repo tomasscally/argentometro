@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-09-17T14:06:28.527Z",
+  "generatedAt": "2026-09-18T13:21:24.992Z",
   "indicators": [
     {
       "indicatorId": "cedlas_gini",
       "rows": 58,
       "from": "1974-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:07.775Z",
+      "fetchedAt": "2026-09-18T13:20:31.906Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -16,7 +16,7 @@
       "rows": 53,
       "from": "1986-01-01",
       "to": "2022-07-01",
-      "fetchedAt": "2026-09-17T14:04:11.124Z",
+      "fetchedAt": "2026-09-18T13:20:36.420Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -26,7 +26,7 @@
       "rows": 275,
       "from": "2003-01-01",
       "to": "2026-08-01",
-      "fetchedAt": "2026-09-17T14:03:57.692Z",
+      "fetchedAt": "2026-09-18T13:20:20.108Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -36,7 +36,7 @@
       "rows": 248,
       "from": "2005-11-01",
       "to": "2026-06-01",
-      "fetchedAt": "2026-09-17T14:03:58.529Z",
+      "fetchedAt": "2026-09-18T13:20:21.003Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -46,7 +46,7 @@
       "rows": 28,
       "from": "2003-07-01",
       "to": "2026-01-01",
-      "fetchedAt": "2026-09-17T14:03:59.373Z",
+      "fetchedAt": "2026-09-18T13:20:21.877Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -56,7 +56,7 @@
       "rows": 8947,
       "from": "2002-03-04",
       "to": "2026-08-31",
-      "fetchedAt": "2026-09-17T14:04:01.961Z",
+      "fetchedAt": "2026-09-18T13:20:24.590Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -66,17 +66,17 @@
       "rows": 91,
       "from": "2003-01-01",
       "to": "2026-01-01",
-      "fetchedAt": "2026-09-17T14:04:02.807Z",
+      "fetchedAt": "2026-09-18T13:20:25.838Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
     },
     {
       "indicatorId": "reserves",
-      "rows": 3014,
+      "rows": 3015,
       "from": "2014-04-25",
-      "to": "2026-09-14",
-      "fetchedAt": "2026-09-17T14:04:04.321Z",
+      "to": "2026-09-15",
+      "fetchedAt": "2026-09-18T13:20:27.732Z",
       "organismos": [
         "Banco Central de la República Argentina"
       ]
@@ -86,7 +86,7 @@
       "rows": 36,
       "from": "1980-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:06:23.413Z",
+      "fetchedAt": "2026-09-18T13:21:18.935Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -96,7 +96,7 @@
       "rows": 40,
       "from": "1981-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:06:23.666Z",
+      "fetchedAt": "2026-09-18T13:21:19.447Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -106,7 +106,7 @@
       "rows": 17,
       "from": "1987-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:06:23.898Z",
+      "fetchedAt": "2026-09-18T13:21:19.820Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -116,7 +116,7 @@
       "rows": 32,
       "from": "1981-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:06:24.108Z",
+      "fetchedAt": "2026-09-18T13:21:20.077Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -126,7 +126,7 @@
       "rows": 20,
       "from": "1984-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:06:24.343Z",
+      "fetchedAt": "2026-09-18T13:21:20.290Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -136,7 +136,7 @@
       "rows": 9,
       "from": "2016-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:06:24.652Z",
+      "fetchedAt": "2026-09-18T13:21:20.673Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -146,7 +146,7 @@
       "rows": 16,
       "from": "1987-01-01",
       "to": "2022-01-01",
-      "fetchedAt": "2026-09-17T14:06:24.881Z",
+      "fetchedAt": "2026-09-18T13:21:21.061Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -156,7 +156,7 @@
       "rows": 3,
       "from": "2022-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:06:25.281Z",
+      "fetchedAt": "2026-09-18T13:21:21.278Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -166,7 +166,7 @@
       "rows": 5,
       "from": "2016-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:06:25.561Z",
+      "fetchedAt": "2026-09-18T13:21:21.632Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -176,7 +176,7 @@
       "rows": 385,
       "from": "1994-07-01",
       "to": "2026-07-01",
-      "fetchedAt": "2026-09-17T14:04:24.900Z",
+      "fetchedAt": "2026-09-18T13:20:49.667Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -186,7 +186,7 @@
       "rows": 274,
       "from": "2003-01-01",
       "to": "2026-07-01",
-      "fetchedAt": "2026-09-17T14:06:28.526Z",
+      "fetchedAt": "2026-09-18T13:21:24.991Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -196,7 +196,7 @@
       "rows": 248,
       "from": "2005-11-01",
       "to": "2026-06-01",
-      "fetchedAt": "2026-09-17T14:06:28.526Z",
+      "fetchedAt": "2026-09-18T13:21:24.991Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -206,7 +206,7 @@
       "rows": 115,
       "from": "2017-02-01",
       "to": "2026-08-01",
-      "fetchedAt": "2026-09-17T14:04:12.523Z",
+      "fetchedAt": "2026-09-18T13:20:37.293Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -216,7 +216,7 @@
       "rows": 115,
       "from": "2017-02-01",
       "to": "2026-08-01",
-      "fetchedAt": "2026-09-17T14:04:13.354Z",
+      "fetchedAt": "2026-09-18T13:20:38.162Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -226,67 +226,67 @@
       "rows": 125,
       "from": "2016-04-01",
       "to": "2026-08-01",
-      "fetchedAt": "2026-09-17T14:04:14.180Z",
+      "fetchedAt": "2026-09-18T13:20:39.014Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
     },
     {
       "indicatorId": "rate_fixed_term",
-      "rows": 2848,
+      "rows": 2849,
       "from": "2015-01-02",
-      "to": "2026-09-15",
-      "fetchedAt": "2026-09-17T14:04:15.322Z",
+      "to": "2026-09-16",
+      "fetchedAt": "2026-09-18T13:20:40.310Z",
       "organismos": [
         "Banco Central de la República Argentina"
       ]
     },
     {
       "indicatorId": "rate_badlar",
-      "rows": 2848,
+      "rows": 2849,
       "from": "2015-01-02",
-      "to": "2026-09-15",
-      "fetchedAt": "2026-09-17T14:04:15.844Z",
+      "to": "2026-09-16",
+      "fetchedAt": "2026-09-18T13:20:40.946Z",
       "organismos": [
         "Banco Central de la República Argentina"
       ]
     },
     {
       "indicatorId": "uva",
-      "rows": 3823,
+      "rows": 3824,
       "from": "2016-03-31",
-      "to": "2026-09-17",
-      "fetchedAt": "2026-09-17T14:04:16.409Z",
+      "to": "2026-09-18",
+      "fetchedAt": "2026-09-18T13:20:41.597Z",
       "organismos": [
         "Banco Central de la República Argentina"
       ]
     },
     {
       "indicatorId": "cer",
-      "rows": 4278,
+      "rows": 4279,
       "from": "2015-01-01",
-      "to": "2026-09-17",
-      "fetchedAt": "2026-09-17T14:04:16.985Z",
+      "to": "2026-09-18",
+      "fetchedAt": "2026-09-18T13:20:42.261Z",
       "organismos": [
         "Banco Central de la República Argentina"
       ]
     },
     {
       "indicatorId": "monetary_base",
-      "rows": 2847,
+      "rows": 2848,
       "from": "2015-01-02",
-      "to": "2026-09-14",
-      "fetchedAt": "2026-09-17T14:04:17.494Z",
+      "to": "2026-09-15",
+      "fetchedAt": "2026-09-18T13:20:42.903Z",
       "organismos": [
         "Banco Central de la República Argentina"
       ]
     },
     {
       "indicatorId": "private_credit",
-      "rows": 2847,
+      "rows": 2848,
       "from": "2015-01-02",
-      "to": "2026-09-14",
-      "fetchedAt": "2026-09-17T14:04:18.043Z",
+      "to": "2026-09-15",
+      "fetchedAt": "2026-09-18T13:20:43.506Z",
       "organismos": [
         "Banco Central de la República Argentina"
       ]
@@ -296,7 +296,7 @@
       "rows": 270,
       "from": "2004-01-01",
       "to": "2026-06-01",
-      "fetchedAt": "2026-09-17T14:04:19.858Z",
+      "fetchedAt": "2026-09-18T13:20:44.396Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -306,7 +306,7 @@
       "rows": 258,
       "from": "2005-01-01",
       "to": "2026-06-01",
-      "fetchedAt": "2026-09-17T14:04:20.697Z",
+      "fetchedAt": "2026-09-18T13:20:45.267Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -316,7 +316,7 @@
       "rows": 175,
       "from": "2012-01-01",
       "to": "2026-07-01",
-      "fetchedAt": "2026-09-17T14:04:21.526Z",
+      "fetchedAt": "2026-09-18T13:20:46.136Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -326,7 +326,7 @@
       "rows": 415,
       "from": "1992-01-01",
       "to": "2026-07-01",
-      "fetchedAt": "2026-09-17T14:04:22.361Z",
+      "fetchedAt": "2026-09-18T13:20:47.027Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -336,7 +336,7 @@
       "rows": 415,
       "from": "1992-01-01",
       "to": "2026-07-01",
-      "fetchedAt": "2026-09-17T14:04:23.209Z",
+      "fetchedAt": "2026-09-18T13:20:47.911Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -346,7 +346,7 @@
       "rows": 356,
       "from": "1997-01-01",
       "to": "2026-08-01",
-      "fetchedAt": "2026-09-17T14:04:24.050Z",
+      "fetchedAt": "2026-09-18T13:20:48.788Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -356,7 +356,7 @@
       "rows": 129,
       "from": "2015-10-01",
       "to": "2026-06-01",
-      "fetchedAt": "2026-09-17T14:04:25.726Z",
+      "fetchedAt": "2026-09-18T13:20:50.530Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -366,7 +366,7 @@
       "rows": 120,
       "from": "1996-01-01",
       "to": "2025-10-01",
-      "fetchedAt": "2026-09-17T14:04:26.555Z",
+      "fetchedAt": "2026-09-18T13:20:51.396Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -376,7 +376,7 @@
       "rows": 87,
       "from": "2003-07-01",
       "to": "2026-01-01",
-      "fetchedAt": "2026-09-17T14:04:27.373Z",
+      "fetchedAt": "2026-09-18T13:20:52.254Z",
       "organismos": [
         "Series de Tiempo AR — Ministerio de Economía"
       ]
@@ -386,7 +386,7 @@
       "rows": 53,
       "from": "1988-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:30.411Z",
+      "fetchedAt": "2026-09-18T13:20:56.241Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -396,7 +396,7 @@
       "rows": 56,
       "from": "1986-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:33.754Z",
+      "fetchedAt": "2026-09-18T13:20:59.197Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -406,7 +406,7 @@
       "rows": 56,
       "from": "1986-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:35.755Z",
+      "fetchedAt": "2026-09-18T13:21:01.462Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -416,7 +416,7 @@
       "rows": 56,
       "from": "1986-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:39.493Z",
+      "fetchedAt": "2026-09-18T13:21:04.884Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -426,7 +426,7 @@
       "rows": 56,
       "from": "1986-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:41.468Z",
+      "fetchedAt": "2026-09-18T13:21:07.128Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -436,7 +436,7 @@
       "rows": 55,
       "from": "1986-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:42.405Z",
+      "fetchedAt": "2026-09-18T13:21:08.219Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -446,7 +446,7 @@
       "rows": 55,
       "from": "1986-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:43.171Z",
+      "fetchedAt": "2026-09-18T13:21:09.122Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -456,7 +456,7 @@
       "rows": 58,
       "from": "1974-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:44.066Z",
+      "fetchedAt": "2026-09-18T13:21:10.141Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -466,7 +466,7 @@
       "rows": 57,
       "from": "1980-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:44.957Z",
+      "fetchedAt": "2026-09-18T13:21:11.168Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -476,7 +476,7 @@
       "rows": 56,
       "from": "1980-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:46.087Z",
+      "fetchedAt": "2026-09-18T13:21:12.597Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -486,7 +486,7 @@
       "rows": 56,
       "from": "1980-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:47.369Z",
+      "fetchedAt": "2026-09-18T13:21:14.021Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -496,7 +496,7 @@
       "rows": 57,
       "from": "1980-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:48.138Z",
+      "fetchedAt": "2026-09-18T13:21:14.922Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -506,7 +506,7 @@
       "rows": 57,
       "from": "1980-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:49.203Z",
+      "fetchedAt": "2026-09-18T13:21:16.077Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -516,7 +516,7 @@
       "rows": 57,
       "from": "1980-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:50.571Z",
+      "fetchedAt": "2026-09-18T13:21:17.577Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -526,7 +526,7 @@
       "rows": 56,
       "from": "1980-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:50.915Z",
+      "fetchedAt": "2026-09-18T13:21:18.008Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -536,7 +536,7 @@
       "rows": 51,
       "from": "1993-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:04:51.458Z",
+      "fetchedAt": "2026-09-18T13:21:18.599Z",
       "organismos": [
         "CEDLAS — UNLP y Banco Mundial (SEDLAC)"
       ]
@@ -546,7 +546,7 @@
       "rows": 46,
       "from": "1980-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:25.625Z",
+      "fetchedAt": "2026-09-18T13:21:21.887Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -556,7 +556,7 @@
       "rows": 46,
       "from": "1980-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:25.690Z",
+      "fetchedAt": "2026-09-18T13:21:22.132Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -566,7 +566,7 @@
       "rows": 46,
       "from": "1980-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:25.920Z",
+      "fetchedAt": "2026-09-18T13:21:22.253Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -576,7 +576,7 @@
       "rows": 46,
       "from": "1980-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:26.184Z",
+      "fetchedAt": "2026-09-18T13:21:22.461Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -586,7 +586,7 @@
       "rows": 46,
       "from": "1980-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:26.269Z",
+      "fetchedAt": "2026-09-18T13:21:22.696Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -596,7 +596,7 @@
       "rows": 7,
       "from": "2018-01-01",
       "to": "2024-01-01",
-      "fetchedAt": "2026-09-17T14:06:26.337Z",
+      "fetchedAt": "2026-09-18T13:21:22.920Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -606,7 +606,7 @@
       "rows": 45,
       "from": "1981-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:26.429Z",
+      "fetchedAt": "2026-09-18T13:21:23.179Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -616,7 +616,7 @@
       "rows": 46,
       "from": "1980-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:26.679Z",
+      "fetchedAt": "2026-09-18T13:21:23.464Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -626,7 +626,7 @@
       "rows": 46,
       "from": "1980-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:26.998Z",
+      "fetchedAt": "2026-09-18T13:21:23.679Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -636,7 +636,7 @@
       "rows": 46,
       "from": "1980-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:27.634Z",
+      "fetchedAt": "2026-09-18T13:21:23.728Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -646,7 +646,7 @@
       "rows": 35,
       "from": "1991-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:27.759Z",
+      "fetchedAt": "2026-09-18T13:21:24.070Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -656,7 +656,7 @@
       "rows": 35,
       "from": "1991-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:27.856Z",
+      "fetchedAt": "2026-09-18T13:21:24.469Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -666,7 +666,7 @@
       "rows": 35,
       "from": "1991-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:28.087Z",
+      "fetchedAt": "2026-09-18T13:21:24.702Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -676,7 +676,7 @@
       "rows": 35,
       "from": "1991-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:28.295Z",
+      "fetchedAt": "2026-09-18T13:21:24.937Z",
       "organismos": [
         "World Bank Open Data"
       ]
@@ -686,7 +686,7 @@
       "rows": 35,
       "from": "1991-01-01",
       "to": "2025-01-01",
-      "fetchedAt": "2026-09-17T14:06:28.524Z",
+      "fetchedAt": "2026-09-18T13:21:24.990Z",
       "organismos": [
         "World Bank Open Data"
       ]
